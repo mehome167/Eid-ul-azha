@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Shopping</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #e8f5e9;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo { /* New style for the logo */
+            width: 80px; /* Example size for your logo */
+            height: 80px; /* Example size for your logo */
+            margin-right: 15px;
+            object-fit: contain; /* Ensures the image fits without distortion */
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image-slider {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background-color: #eee;
+        }
+
+        .product-image-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .product-image-slider img.active {
+            opacity: 1;
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-info h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .product-options {
+            margin-bottom: 10px;
+        }
+
+        .product-options .sizes {
+            font-size: 0.9em;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .product-options .colors {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            display: inline-block;
+        }
+
+        .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .ad-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0;
+            margin: 10px 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        #custom-footer-content h2,
+        #whatsapp-share-box h3 {
+            color: #ffeb3b;
+        }
+
+        #custom-footer-content p,
+        #whatsapp-share-box p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        #whatsapp-share-box input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+            margin-bottom: 10px; /* Added margin for spacing */
+        }
+
+        #whatsapp-share-box button {
+            padding: 10px 15px;
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 5px; /* Adjusted margin */
+        }
+
+        #whatsapp-share-box button:hover {
+            opacity: 0.9;
+        }
+        #share-buttons-container {
+            margin-top:10px; /* Adjusted margin */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-grid {
+                justify-content: center;
+            }
+            .product-card {
+                width: 45%;
+            }
+             #whatsapp-share-box input[type="text"] {
+                margin-right: 0; /* Remove right margin on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-card {
+                width: 90%;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            .header-logo { /* Adjusted for smaller screens */
+                width: 60px;
+                height: 60px;
+            }
+            #whatsapp-share-box input[type="text"] {
+                width: calc(100% - 22px); /* Full width minus padding/border */
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            #whatsapp-share-box button {
+                width: calc(100% - 22px); /* Full width for button too */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+<img src="https://i.ibb.co/RTxvghjY/Eid-al-adha-20250530-054922-0000.png" alt="Your Logo" class="header-logo" onerror="this.style.display='none'"> 
+            Eid. shopping
+        </h1>
+    </header>
+
+    <main class="product-grid">
+        <a href="https://s.daraz.pk/s.0BgZz" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/6cGydpcw/IMG-20250529-091540.jpg" alt="Sandle Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/rG5GyXqM/IMG-20250529-091650.jpg" alt="Sandle Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/9H5H5RQ4/IMG-20250529-091719.jpg" alt="Sandle Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/Ps4ZPhjQ/IMG-20250529-091612.jpg" alt="Sandle Image 4" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>New Trending comfortable sandle for men and boy's</h2>
+                <p class="price">PKR. 1200</p>
+            </div>
+        </a>
+
+        <a href="https://s.daraz.pk/s.0B5BG" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/jkD6ZZCJ/IMG-20250529-141754.jpg" alt="Kurta Pajama Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/pjWwTxK3/IMG-20250529-141731.jpg" alt="Kurta Pajama Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/GQjQf4zH/IMG-20250529-141653.jpg" alt="Kurta Pajama Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Casual Wear Mens Kurta Pajama Suite Everyday Wear Stylish Mens Kurta Pajama suite</h2>
+                <p class="price">PKR. 1300</p>
+            </div>
+        </a>
+
+        <a href="https://s.daraz.pk/s.0Bgbq" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/RTxvghjY/Eid-al-adha-20250530-054922-0000.png" alt="Attar Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>ATTAR (Roll On Perfume Oil) - ( Long Lasting Concentrated Alcohol Free Perfume Oil</h2>
+                <p class="price">PKR. 250</p>
+            </div>
+        </a>
+
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5afc92b0c14e26105dc8710601fb3328',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5afc92b0c14e26105dc8710601fb3328/invoke.js"></script>
+        </div>
+
+        <a href="https://s.daraz.pk/s.0BgTl" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/YTjWPD8g/IMG-20250529-143605.jpg" alt="Watch Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/RTxvghjY/Eid-al-adha-20250530-054922-0000.png" alt="Watch Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/fdwNcxYr/IMG-20250529-143442.jpg" alt="Watch Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/2wJ5CWb/IMG-20250529-143516.jpg" alt="Watch Image 4" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Classic Luxury Watch for Men / Boys - Stylish Stainless Steel Analog Quartz Mens Watches</h2>
+                <p class="price">PKR. 490</p>
+            </div>
+        </a>
+
+        <a href="https://s.daraz.pk/s.0B8Dy" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/XxZmphYL/921f1e6d-4479-4b4b-aa15-c2be2dc89f15.jpg" alt="Peshaweri Chapple Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/dszGHsSS/1d9da889-64bb-422e-8280-85891d0001b1.jpg" alt="Peshaweri Chapple Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/FkwVjY4q/1869ca34-beb5-4b5c-9722-341fb28fbcc9.jpg" alt="Peshaweri Chapple Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/7tdP1PP4/c366abf5-9513-48a6-bf96-c341a2336dea.jpg" alt="Peshaweri Chapple Image 4" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/mrQzfyY7/f54957e7-a49e-4be8-b1c0-a73d36d4476c.jpg" alt="Peshaweri Chapple Image 5" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/zWGkF98Y/2b92a7ac-b4c5-46b5-8acf-0a2e70a08904.jpg" alt="Peshaweri Chapple Image 6" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>FLK Hand Made Peshaweri Chapple of Men 2025 traditional sandals outdoor Comfortable light weight Walking Fashion Breathable</h2>
+                <p class="price">PKR. 882</p>
+            </div>
+        </a>
+         <a href="https://s.daraz.pk/s.0BgQP" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/1f1yQX2Z/7a5b1136-47f0-4925-b08c-5013690d15a7.jpg" alt="Eye Contact Lense Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Eye contact lense eye care lense party wear lense in light grey</h2>
+                <p class="price">PKR. 300</p>
+            </div>
+        </a>
+
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5afc92b0c14e26105dc8710601fb3328',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5afc92b0c14e26105dc8710601fb3328/invoke.js"></script>
+        </div>
+
+        <a href="https://s.daraz.pk/s.0Bgl2" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/hRmJWydd/b69ae24b-5bbf-4103-8e1b-4808df3bf036.jpg" alt="Black Tracksuit Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/jPPgQxsj/d26b8985-53d9-412e-a910-4faef2299d43.jpg" alt="Black Tracksuit Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/1YT9NTXK/a4be7d75-27fd-44c5-91f2-9580d15710e7.jpg" alt="Black Tracksuit Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/GfGBV3yM/cafaf376-1863-4b71-94e2-877b910b8e22.jpg" alt="Black Tracksuit Image 4" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Black Tracksuit side lion face printed summer track Men's Clothing Summer Breathable T-Shirt and Black Shorts Gym wear and comfortable</h2>
+                <p class="price">PKR. 663</p>
+            </div>
+        </a>
+
+        <a href="https://s.daraz.pk/s.0BgoU" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/QFq1x3GK/06f72378-8ad7-426c-9990-dc0b04bf290c.jpg" alt="Shopping Bags Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/N6dYvCnc/b2d06864-9493-4cee-979e-386d4b9d3973.jpg" alt="Shopping Bags Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/JWSSQrcr/aaa2bb8a-91e4-421f-94da-2a7912f62d88.jpg" alt="Shopping Bags Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Pack of 50 Biodigradable Eid mubarak Plastic Shopping Bags, Eid Mubarak plastic shoppers , Bags for EID, bags for meat , two sizes available Eid Mubarak plastic shopper</h2>
+                <p class="price">PKR. 217</p>
+            </div>
+        </a>
+
+        <a href="https://s.daraz.pk/s.0Bgpu" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/GfsVmM6v/IMG-20250529-194902.jpg" alt="Perfume Atomizer Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/tTZtBNX5/IMG-20250529-194833.jpg" alt="Perfume Atomizer Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Portable Mini Perfume Refillable Atomizer Container, Portable Perfume Spray Bottle, Travel Perfume Scent Pump Case Fragrance Empty Spray Bottle for Traveling and Outgoing(5 ml)(PACK OF 1)</h2>
+                <p class="price">PKR. 145</p>
+            </div>
+        </a>
+
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5afc92b0c14e26105dc8710601fb3328',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5afc92b0c14e26105dc8710601fb3328/invoke.js"></script>
+        </div>
+
+        <a href="https://s.daraz.pk/s.0BmiV" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/4nnDFKdp/Screenshot-2025-05-29-19-56-24-57-f9b251d62f6eb22790b83e2e3c410dd0.jpg" alt="Ladies Dori Watch Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/bjPWwsXt/Screenshot-2025-05-29-19-56-02-25-f9b251d62f6eb22790b83e2e3c410dd0.jpg" alt="Ladies Dori Watch Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/VGyf9ST/Screenshot-2025-05-29-19-55-22-07-f9b251d62f6eb22790b83e2e3c410dd0.jpg" alt="Ladies Dori Watch Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/gL53gYvM/Screenshot-2025-05-29-19-54-51-28-f9b251d62f6eb22790b83e2e3c410dd0.jpg" alt="Ladies Dori Watch Image 4" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Ladies Dori Watch New Fashion £ Bracelet Watch £ Multi colour and Multiple designs</h2>
+                <p class="price">PKR. 258</p>
+            </div>
+        </a>
+
+         <a href="https://s.daraz.pk/s.0BgQP" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/1f1yQX2Z/7a5b1136-47f0-4925-b08c-5013690d15a7.jpg" alt="Eye Contact Lense Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Eye contact lense eye care lense party wear lense in light grey</h2>
+                <p class="price">PKR. 300</p>
+            </div>
+        </a>
+
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5afc92b0c14e26105dc8710601fb3328',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5afc92b0c14e26105dc8710601fb3328/invoke.js"></script>
+        </div>
+
+        <a href="https://s.daraz.pk/s.0Bgl2" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/hRmJWydd/b69ae24b-5bbf-4103-8e1b-4808df3bf036.jpg" alt="Black Tracksuit Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/jPPgQxsj/d26b8985-53d9-412e-a910-4faef2299d43.jpg" alt="Black Tracksuit Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/1YT9NTXK/a4be7d75-27fd-44c5-91f2-9580d15710e7.jpg" alt="Black Tracksuit Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/GfGBV3yM/cafaf376-1863-4b71-94e2-877b910b8e22.jpg" alt="Black Tracksuit Image 4" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Black Tracksuit side lion face printed summer track Men's Clothing Summer Breathable T-Shirt and Black Shorts Gym wear and comfortable</h2>
+                <p class="price">PKR. 663</p>
+            </div>
+        </a>
+
+        <a href="https://s.daraz.pk/s.0BgoU" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/QFq1x3GK/06f72378-8ad7-426c-9990-dc0b04bf290c.jpg" alt="Shopping Bags Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/N6dYvCnc/b2d06864-9493-4cee-979e-386d4b9d3973.jpg" alt="Shopping Bags Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/JWSSQrcr/aaa2bb8a-91e4-421f-94da-2a7912f62d88.jpg" alt="Shopping Bags Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Pack of 50 Biodigradable Eid mubarak Plastic Shopping Bags, Eid Mubarak plastic shoppers , Bags for EID, bags for meat , two sizes available Eid Mubarak plastic shopper</h2>
+                <p class="price">PKR. 217</p>
+            </div>
+        </a>
+
+        <a href="https://s.daraz.pk/s.0Bgpu" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/GfsVmM6v/IMG-20250529-194902.jpg" alt="Perfume Atomizer Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/tTZtBNX5/IMG-20250529-194833.jpg" alt="Perfume Atomizer Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Portable Mini Perfume Refillable Atomizer Container, Portable Perfume Spray Bottle, Travel Perfume Scent Pump Case Fragrance Empty Spray Bottle for Traveling and Outgoing(5 ml)(PACK OF 1)</h2>
+                <p class="price">PKR. 145</p>
+            </div>
+        </a>
+
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5afc92b0c14e26105dc8710601fb3328',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5afc92b0c14e26105dc8710601fb3328/invoke.js"></script>
+        </div>
+
+        <a href="https://s.daraz.pk/s.0BmiV" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/4nnDFKdp/Screenshot-2025-05-29-19-56-24-57-f9b251d62f6eb22790b83e2e3c410dd0.jpg" alt="Ladies Dori Watch Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/bjPWwsXt/Screenshot-2025-05-29-19-56-02-25-f9b251d62f6eb22790b83e2e3c410dd0.jpg" alt="Ladies Dori Watch Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/VGyf9ST/Screenshot-2025-05-29-19-55-22-07-f9b251d62f6eb22790b83e2e3c410dd0.jpg" alt="Ladies Dori Watch Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/gL53gYvM/Screenshot-2025-05-29-19-54-51-28-f9b251d62f6eb22790b83e2e3c410dd0.jpg" alt="Ladies Dori Watch Image 4" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Ladies Dori Watch New Fashion £ Bracelet Watch £ Multi colour and Multiple designs</h2>
+                <p class="price">PKR. 258</p>
+            </div>
+        </a>
+<a href="https://s.daraz.pk/s.0BmoF" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/KjBq5W83/IMG-20250529-200914.jpg" alt="Handbag Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/d4SFDT2y/IMG-20250529-200855.jpg" alt="Handbag Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/rG6r5NRN/IMG-20250529-200838.jpg" alt="Handbag Image 3" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Hand bags for girls with Stylish Golden chain And Long strap Top Handle Bag Medium Size for Ladies and Girls Shoulder Bag Fashionable Design Casual Style Tote Bag for Traveling</h2>
+                <p class="price">PKR. 533</p>
+            </div>
+        </a>
+
+        <a href="https://s.daraz.pk/s.0Bmy1" class="product-card" target="_blank">
+            <div class="product-image-slider">
+                <img src="https://i.ibb.co/Z7BFztc/IMG-20250529-201901.jpg" alt="Hijab Image 1" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/0Rq8jJ08/IMG-20250529-201846.jpg" alt="Hijab Image 2" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/0ySTsBPV/IMG-20250529-201829.jpg" alt="Hijab Image 3" class="active" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+                <img src="https://i.ibb.co/KchKcxB9/IMG-20250529-201813.jpg" alt="Hijab Image 4" onerror="this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=Image+Not+Found'; this.alt='Image not found'">
+            </div>
+            <div class="product-info">
+                <h2>Crown Hijab with Naqab Ready-to-Wear - Pure Creeb, Elastic Patti, Lightweight, Easy-to-Wash</h2>
+                <p class="price">PKR. 780</p>
+            </div>
+        </a>
+         <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5afc92b0c14e26105dc8710601fb3328',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5afc92b0c14e26105dc8710601fb3328/invoke.js"></script>
+        </div>
+
+    </main>
+
+    <footer>
+        <div id="custom-footer-content">
+            <p><em>(Yahan aap apni footer shayari add karenge)</em></p>
+        </div>
+        <hr style="border-color: #555; margin: 20px auto; width: 80%;">
+        <div id="whatsapp-share-box">
+            <h3>Eid Mubarak Wishes Share Karein!</h3>
+            <p>Apna naam likhein aur Eid ki khushiyan baantein:</p>
+            <input type="text" id="senderNameInput" placeholder="Aapka Naam (Jaise: Munir)">
+            <div id="share-buttons-container">
+                 <button id="whatsappShareButton">WhatsApp Par Share Karein</button>
+                </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript Code for Image Slider
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = document.querySelectorAll('.product-image-slider');
+
+            sliders.forEach(slider => {
+                const images = slider.querySelectorAll('img');
+                if (images.length > 1) {
+                    let currentIndex = 0;
+                    // Ensure the first image is active when page loads
+                    images.forEach(img => img.classList.remove('active'));
+                    images[currentIndex].classList.add('active');
+
+                    setInterval(() => {
+                        images[currentIndex].classList.remove('active');
+                        currentIndex = (currentIndex + 1) % images.length;
+                        images[currentIndex].classList.add('active');
+                    }, 3000); // Change image every 3 seconds
+                } else if (images.length === 1) {
+                    // If only one image, just make it active
+                    images[0].classList.add('active');
+                }
+            });
+
+              // JavaScript Code for WhatsApp Share Box
+            const senderNameInput = document.getElementById('senderNameInput');
+            const whatsappShareButton = document.getElementById('whatsappShareButton');
+
+            whatsappShareButton.addEventListener('click', function() {
+                const senderName = senderNameInput.value.trim(); // Naam direct button click par get karein
+
+                if (senderName === "") {
+                    // Custom alert using a simple div
+                    let alertDiv = document.getElementById('customAlertForWhatsapp');
+                     if (!alertDiv) {
+                        alertDiv = document.createElement('div');
+                        alertDiv.id = 'customAlertForWhatsapp';
+                        alertDiv.style.position = 'fixed';
+                        alertDiv.style.top = '20px';
+                        alertDiv.style.left = '50%';
+                        alertDiv.style.transform = 'translateX(-50%)';
+                        alertDiv.style.backgroundColor = 'lightcoral';
+                        alertDiv.style.color = 'white';
+                        alertDiv.style.padding = '10px 20px';
+                        alertDiv.style.borderRadius = '5px';
+                        alertDiv.style.zIndex = '1000';
+                        document.body.appendChild(alertDiv);
+                    }
+                    alertDiv.textContent = 'Please apna naam likhein.';
+                    alertDiv.style.display = 'block';
+                    setTimeout(() => { alertDiv.style.display = 'none'; }, 3000);
+                    return;
+                }
+
+                const eidPoem = `🌙 Eid Ki Khushiyan Dher Saari! 🌙
+
+Har pal ho Mubarak, har din pyara,
+Yeh Eid ka tyohar laya hai ujala.
+Das din tak yeh jashn manayein,
+Khushiyon ke deep sang jalayein!
+Dua hai ke yeh Eid aapke liye
+dheron khushiyan aur barkatein laye. ✨`;
+
+                const message = `${eidPoem}\n\n Aap ko ${senderName} ne yeh paigham bheja hai. 😊`;
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
